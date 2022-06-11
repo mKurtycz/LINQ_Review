@@ -9,10 +9,24 @@ namespace LINQ_Review.Controler
 {
     internal class AppControler
     {
+        private DataManipulationControler InternalDataManipulationControler;
+
+        public AppControler()
+        {
+            try
+            {
+                InternalDataManipulationControler = new DataManipulationControler();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public void RunApp()
         {
-            int state = 0;
             AppView.Run();
+            int state = 0;
 
             do
             {

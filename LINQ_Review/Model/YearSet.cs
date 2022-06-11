@@ -22,5 +22,14 @@ namespace LINQ_Review.Model
             InvestnebtPurchasesIndicator = IP;
             OtherExpendituresIndicator = OE;
         }
+
+        public override string ToString()
+        {
+            return $"{{\n    Year: {Year};" +
+                $"\n    CEP: {CapitalExpendituresPriceIndicator};" +
+                $"\n    CAW: {ConstructionAssemblyWorksIndicator};" +
+                $"\n    IP: {InvestnebtPurchasesIndicator};" +
+                $"\n    OE: {OtherExpendituresIndicator};\n}}";
+        }
     }
 }
