@@ -9,13 +9,14 @@ namespace LINQ_Review.Controler
 {
     internal class AppControler
     {
-        private DataManipulationControler InternalDataManipulationControler;
+        private DataManipulationControler internalDataManipulationControler;
+        private IActionControler actionControler;
 
         public AppControler()
         {
             try
             {
-                InternalDataManipulationControler = new DataManipulationControler();
+                internalDataManipulationControler = new DataManipulationControler();
             }
             catch
             {
@@ -31,27 +32,31 @@ namespace LINQ_Review.Controler
             do
             {
                 MenuView.ShowMenu();
-                
+
                 //VALIDATION
-                if (Int32.TryParse(Console.ReadLine(), out state)==false || state < 1 || state > 5)
+                if (Int32.TryParse(Console.ReadLine(), out state) == false || state < 1 || state > 5)
                 {
                     MessageView.IncorrectDataMessage();
                 }
                 else
                 {
-                    switch(state)
+                    switch (state)
                     {
                         case 1:
-                            PrintAction();
+                            actionControler = new PrintActionControler();
+                            actionControler.RunModule();
                             break;
                         case 2:
-                            AddAction();
+                            actionControler = new AddActionControler();
+                            actionControler.RunModule();
                             break;
                         case 3:
-                            EditAction();
+                            actionControler = new EditActionControler();
+                            actionControler.RunModule();
                             break;
                         case 4:
-                            DeleteAction();
+                            actionControler = new DeleteActionControler();
+                            actionControler.RunModule();
                             break;
                         case 5:
                             state = -1;
@@ -60,28 +65,6 @@ namespace LINQ_Review.Controler
                 }
             }
             while (state != -1);
-
-            AppView.ShutDown();
-        }
-
-        private void AddAction()
-        {
-            AddActionView.ShowMenu();
-        }
-
-        private void DeleteAction()
-        {
-            DeleteActionView.ShowMenu();
-        }
-
-        private void EditAction()
-        {
-            EditActionView.ShowMenu();
-        }
-
-        private void PrintAction()
-        {
-            PrintActionView.ShowMenu();
         }
     }
 }

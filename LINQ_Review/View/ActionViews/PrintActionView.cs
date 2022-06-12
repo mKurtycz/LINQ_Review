@@ -12,7 +12,11 @@ namespace LINQ_Review.View
         {
             DashSeparator.SeparateWithDashes();
             string menu = "\nMODUŁ - WYŚWIETLANIE INDEKSÓW\n";
-            menu += "\n";
+            menu += "\nDostęne akcje:";
+            menu += "\n1 - Wyświetlanie wszystkich rekordów z pliku";
+            menu += "\n2 - Filtrowanie i wyświetlanie danych indeksów";
+            menu += "\n3 - Powrót do menu głownego";
+            menu += "\n\nWpisz numer akcji i zaakceptuj klawiszem ENTER.\n";
             Console.WriteLine(menu);
             DashSeparator.SeparateWithDashes();
         }
