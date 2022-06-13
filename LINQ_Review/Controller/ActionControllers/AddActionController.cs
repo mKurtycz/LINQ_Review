@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LINQ_Review.Controler
+namespace LINQ_Review.Controller
 {
-    internal class DeleteActionControler : IActionControler
+    internal class AddActionController : IActionController
     {
         public void RunModule()
         {

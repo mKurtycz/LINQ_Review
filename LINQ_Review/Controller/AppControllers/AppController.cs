@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LINQ_Review.Controler
+namespace LINQ_Review.Controller
 {
-    internal class AppControler
+    internal class AppController
     {
-        private DataManipulationControler internalDataManipulationControler;
-        private IActionControler actionControler;
+        private DataManipulationController internalDataManipulationControler;
+        private IActionController actionControler;
 
-        public AppControler()
+        public AppController()
         {
             try
             {
-                internalDataManipulationControler = new DataManipulationControler();
+                internalDataManipulationControler = new DataManipulationController();
             }
             catch
             {
@@ -43,19 +43,19 @@ namespace LINQ_Review.Controler
                     switch (state)
                     {
                         case 1:
-                            actionControler = new PrintActionControler();
+                            actionControler = new PrintActionController();
                             actionControler.RunModule();
                             break;
                         case 2:
-                            actionControler = new AddActionControler();
+                            actionControler = new AddActionController();
                             actionControler.RunModule();
                             break;
                         case 3:
-                            actionControler = new EditActionControler();
+                            actionControler = new EditActionController();
                             actionControler.RunModule();
                             break;
                         case 4:
-                            actionControler = new DeleteActionControler();
+                            actionControler = new DeleteActionController();
                             actionControler.RunModule();
                             break;
                         case 5:

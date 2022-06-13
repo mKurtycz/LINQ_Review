@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LINQ_Review.Controler
+namespace LINQ_Review.Controller
 {
-    internal class PrintActionControler : IActionControler
+    internal class PrintActionController : IActionController
     {
         public void RunModule()
         {

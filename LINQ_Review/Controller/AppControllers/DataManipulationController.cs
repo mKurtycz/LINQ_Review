@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LINQ_Review.Controler
+namespace LINQ_Review.Controller
 {
-    internal class DataManipulationControler
+    internal class DataManipulationController
     {
         private string dataSetPath = "DataSetCopy.csv";
         List<string> headers;
         public List<YearSet> dataSet;
 
-        public DataManipulationControler()
+        public DataManipulationController()
         {
             try
             {
