@@ -33,9 +33,10 @@ namespace LINQ_Review.Controller
                 else {
                     if (dataSet == null)
                     {
-                        Console.WriteLine("wykonuje");
                         internalDataManipulationControler = new DataManipulationController();
                         dataSet = internalDataManipulationControler.LoadData();
+                        dataSet.Add(new(2000, 1, 1, 1, 1));
+                        changeHasBeenMade = true;
                     }
 
                     switch (state)
@@ -63,7 +64,7 @@ namespace LINQ_Review.Controller
 
             if (changeHasBeenMade == true)
             {
-                internalDataManipulationControler.SaveChanges();
+                internalDataManipulationControler.SaveChanges(dataSet);
             }
 
             AppView.ShutDown();

@@ -1,5 +1,6 @@
 ﻿using LINQ_Review.Model;
 using LINQ_Review.Exceptions;
+using System.Text;
 
 namespace LINQ_Review.Controller
 {
@@ -14,7 +15,8 @@ namespace LINQ_Review.Controller
         {
             try
             {
-                headers = File.ReadLines(dataSetPath).Take(2).ToList();
+                headers = File.ReadLines(dataSetPath, Encoding.GetEncoding("utf-8")).Take(2).ToList();
+                headers.ForEach(x => Console.WriteLine(x));
                 return File.ReadLines(dataSetPath).Skip(2).Select(line => StringToYearSet(line)).ToList();
             }
             catch
@@ -33,6 +35,13 @@ namespace LINQ_Review.Controller
                                 CheckAndReturnIndex(dataFromString[2]),
                                 CheckAndReturnIndex(dataFromString[3]),
                                 CheckAndReturnIndex(dataFromString[4]));
+        }
+
+        private string YearSetToString(YearSet YearSetDataRow)
+        {
+            return $"{YearSetDataRow.Year};{YearSetDataRow.CapitalExpendituresPriceIndicator};" +
+                   $"{YearSetDataRow.ConstructionAssemblyWorksIndicator};{YearSetDataRow.InvestnebtPurchasesIndicator};" +
+                   $"{YearSetDataRow.OtherExpendituresIndicator}";
         }
 
         private int CheckAndReturnYear(string yearString)
@@ -83,9 +92,15 @@ namespace LINQ_Review.Controller
             }
         }
 
-        public void SaveChanges()
+        public void SaveChanges(List<YearSet> modifiedDataSet)
         {
-
+            using (StreamWriter streamWriter = new StreamWriter(dataSetPath, false, Encoding.UTF8))
+            {
+                headers.ForEach(headerRow => streamWriter.WriteLine(headerRow));
+                modifiedDataSet.Select(dataRow => YearSetToString(dataRow))
+                               .ToList()
+                               .ForEach(dataRow => streamWriter.WriteLine(dataRow));
+            }
         }
     }
 }
