@@ -17,6 +17,7 @@ namespace LINQ_Review.View
 
         public static void ShutDown()
         {
+            DashSeparator.SeparateWithDashes();
             Console.WriteLine("\nDZIĘKUJEMY ZA SKORZYSTANIE Z APLIKACJI!\n");
             DashSeparator.SeparateWithDashes();
         }

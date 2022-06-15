@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LINQ_Review.Controler;
+﻿using LINQ_Review.Controller;
 
 namespace LINQ_Review
 {
@@ -13,7 +8,7 @@ namespace LINQ_Review
         {
             try
             {
-                AppControler appControler = new AppControler();
+                AppController appControler = new AppController();
                 appControler.RunApp();
             }
             catch (Exception e)

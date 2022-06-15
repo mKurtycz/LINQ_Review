@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LINQ_Review.Model;
+using LINQ_Review.View;
 
 namespace LINQ_Review.Controller
 {
-    internal class DeleteActionController : IActionController
+    internal class DeleteActionController : ActionController
     {
-        public void RunModule()
+        public DeleteActionController(List<YearSet> yearSet) : base(yearSet) { }
+
+        public override void RunModule()
         {
-            throw new NotImplementedException();
+            DeleteActionView.ShowMenu();
         }
     }
 }

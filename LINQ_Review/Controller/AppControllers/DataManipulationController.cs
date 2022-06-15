@@ -1,25 +1,21 @@
 ﻿using LINQ_Review.Model;
 using LINQ_Review.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LINQ_Review.Controller
 {
     internal class DataManipulationController
     {
-        private string dataSetPath = "DataSetCopy.csv";
-        List<string> headers;
-        public List<YearSet> dataSet;
+        private string dataSetPath = "DataSet.csv";
+        List<string>? headers;
 
-        public DataManipulationController()
+        public DataManipulationController() { }
+
+        public List<YearSet> LoadData()
         {
             try
             {
                 headers = File.ReadLines(dataSetPath).Take(2).ToList();
-                dataSet = File.ReadLines(dataSetPath).Skip(2).Select(line => StringToYearSet(line)).ToList();
+                return File.ReadLines(dataSetPath).Skip(2).Select(line => StringToYearSet(line)).ToList();
             }
             catch
             {
@@ -62,7 +58,7 @@ namespace LINQ_Review.Controller
             }
         }
 
-        double CheckAndReturnIndex(string indexString)
+        private double CheckAndReturnIndex(string indexString)
         {
             if (indexString.Equals(""))
             {
