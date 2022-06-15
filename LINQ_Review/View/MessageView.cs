@@ -10,9 +10,20 @@ namespace LINQ_Review.View
     {
         public static void IncorrectDataMessage()
         {
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nWPROWADZONO NIEPOPRAWNE DANE!\n");
-            DashSeparator.SeparateWithDashes();
+        }
+
+        public static void AlreadyUsedFilteringProperty()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nFILTROWANIE PO TEJ WŁAŚCIWOŚCI JEST JUŻ ZAAPLIKOWANE!\n");
+        }
+
+        public static void NoDataToPrint()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nBRAK DANYCH DO WYŚWIETLENIA\n");
         }
     }
 }

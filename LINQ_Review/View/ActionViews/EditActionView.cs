@@ -10,11 +10,11 @@ namespace LINQ_Review.View
     {
         public static void ShowMenu()
         {
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
             string menu = "\nMODUŁ - EDYTOWANIE INDEKSÓW\n";
             menu += "\n";
             Console.WriteLine(menu);
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
         }
     }
 }

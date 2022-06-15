@@ -28,15 +28,13 @@ namespace LINQ_Review.Controller
                 }
                 else if (state == 5)
                 {
-                    state = -1;
+                    break;
                 }
                 else {
                     if (dataSet == null)
                     {
                         internalDataManipulationControler = new DataManipulationController();
                         dataSet = internalDataManipulationControler.LoadData();
-                        dataSet.Add(new(2000, 1, 1, 1, 1));
-                        changeHasBeenMade = true;
                     }
 
                     switch (state)

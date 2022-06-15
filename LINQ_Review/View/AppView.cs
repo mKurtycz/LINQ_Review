@@ -10,16 +10,15 @@ namespace LINQ_Review.View
     {
         public static void Run()
         {
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nAPLIKACJA DO PRACY ZE WSKAŹNIKAMI\n");
-            DashSeparator.SeparateWithDashes();
         }
 
         public static void ShutDown()
         {
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nDZIĘKUJEMY ZA SKORZYSTANIE Z APLIKACJI!\n");
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
         }
     }
 }

@@ -10,7 +10,10 @@ namespace LINQ_Review.View
     {
         public static void ShowMenu()
         {
-            string menu = "\nDostęne akcje:";
+            DashSeparatorView.SeparateWithDashes();
+
+            string menu = "\nMENU GŁÓWNE\n";
+            menu +="\nDostęne akcje:";
             menu += "\n1 - Wyświetlanie indeksów";
             menu += "\n2 - Dodawanie indeksów";
             menu += "\n3 - Edycja indeksów";
@@ -19,7 +22,7 @@ namespace LINQ_Review.View
             menu += "\n\nWpisz numer akcji i zaakceptuj klawiszem ENTER.\n";
 
             Console.WriteLine(menu);
-            DashSeparator.SeparateWithDashes();
+            DashSeparatorView.SeparateWithDashes();
         }
     }
 }

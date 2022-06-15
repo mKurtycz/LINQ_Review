@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LINQ_Review.View
 {
-    internal static class DashSeparator
+    internal static class DashSeparatorView
     {
         public static void SeparateWithDashes()
         {

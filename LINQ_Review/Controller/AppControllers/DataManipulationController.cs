@@ -16,7 +16,6 @@ namespace LINQ_Review.Controller
             try
             {
                 headers = File.ReadLines(dataSetPath, Encoding.GetEncoding("utf-8")).Take(2).ToList();
-                headers.ForEach(x => Console.WriteLine(x));
                 return File.ReadLines(dataSetPath).Skip(2).Select(line => StringToYearSet(line)).ToList();
             }
             catch
