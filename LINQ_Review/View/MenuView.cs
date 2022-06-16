@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LINQ_Review.View
+﻿namespace LINQ_Review.View
 {
     internal static class MenuView
     {
-        public static void ShowMenu()
+        // Displays the main menu of the app
+        public static void DisplayMainMenu()
         {
             DashSeparatorView.SeparateWithDashes();
 

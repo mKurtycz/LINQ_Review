@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LINQ_Review.Model
 {
-    struct YearSet
+    struct Yearset
     {
         public int Year { get; private set; }
         public double CapitalExpendituresPriceIndicator { get; private set; }
@@ -14,7 +14,7 @@ namespace LINQ_Review.Model
         public double InvestnebtPurchasesIndicator { get; private set; }
         public double OtherExpendituresIndicator { get; private set; }
 
-        public YearSet(int year, double CEP, double CAW, double IP, double OE)
+        public Yearset(int year, double CEP, double CAW, double IP, double OE)
         {
             Year = year;
             CapitalExpendituresPriceIndicator = CEP;

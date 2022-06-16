@@ -5,54 +5,69 @@ namespace LINQ_Review.Controller
 {
     internal class AppController
     {
+        // Controller that handles with dataset changes 
         private DataManipulationController? internalDataManipulationControler;
+
+        // Controller that handles with running given actions
         private ActionController? actionControler;
-        private List<YearSet>? dataSet;
+
+        // List that stores data from csv file
+        private List<Yearset>? dataset;
 
         public AppController() { }
 
+        // Method implementing the mechanism of runnining the app
         public void RunApp()
         {
             AppView.Run();
+
+            // Auxiliary variables
+            
+            // Stores values that correspond to individual actions
             int state = 0;
+
+            // Stores an information whether the dataset has been changed
             bool changeHasBeenMade = false;
 
             do
             {
-                MenuView.ShowMenu();
+                MenuView.DisplayMainMenu();
 
-                //VALIDATION
+                // Validating data read from user
                 if (Int32.TryParse(Console.ReadLine(), out state) == false || state < 1 || state > 5)
                 {
-                    MessageView.IncorrectDataMessage();
+                    MessageView.InvalidDataMessage();
                 }
+                // If user presses "5" + ENTER it breaks the loop and moves on to saving possible changes and closes the app
                 else if (state == 5)
                 {
                     break;
                 }
-                else {
-                    if (dataSet == null)
+                else
+                {
+                    // Only when user presses "1"-"4" + ENTER the app reads data from a csv file
+                    if (dataset == null)
                     {
                         internalDataManipulationControler = new DataManipulationController();
-                        dataSet = internalDataManipulationControler.LoadData();
+                        dataset = internalDataManipulationControler.LoadData();
                     }
 
                     switch (state)
                     {
                         case 1:
-                            actionControler = new PrintActionController(dataSet);
+                            actionControler = new DisplayActionController(dataset);
                             actionControler.RunModule();
                             break;
                         case 2:
-                            actionControler = new AddActionController(dataSet);
+                            actionControler = new AddActionController(dataset);
                             actionControler.RunModule();
                             break;
                         case 3:
-                            actionControler = new EditActionController(dataSet);
+                            actionControler = new EditActionController(dataset);
                             actionControler.RunModule();
                             break;
                         case 4:
-                            actionControler = new DeleteActionController(dataSet);
+                            actionControler = new DeleteActionController(dataset);
                             actionControler.RunModule();
                             break;
                     }
@@ -60,13 +75,13 @@ namespace LINQ_Review.Controller
             }
             while (state != -1);
 
+            // Only when there appeared changes in the dataset app saves them to csv
             if (changeHasBeenMade == true)
             {
-                internalDataManipulationControler.SaveChanges(dataSet);
+                internalDataManipulationControler.SaveChanges(dataset);
             }
 
             AppView.ShutDown();
-            
         }
     }
 }

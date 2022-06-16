@@ -11,7 +11,8 @@ namespace LINQ_Review.Controller
 
         public DataManipulationController() { }
 
-        public List<YearSet> LoadData()
+        // Method implementing the mechanism of reading data from a csv file
+        public List<Yearset> LoadData()
         {
             try
             {
@@ -24,25 +25,28 @@ namespace LINQ_Review.Controller
             }
         }
 
-        private YearSet StringToYearSet(string stringLine)
+        // Method implementing the mechanism of maping csv data row to yearset
+        private Yearset StringToYearSet(string stringLine)
         {
             string[] dataFromString = new string[5];
             stringLine.Split(";")[0..5].CopyTo(dataFromString, 0);
 
-            return new YearSet(CheckAndReturnYear(dataFromString[0]),
+            return new Yearset(CheckAndReturnYear(dataFromString[0]),
                                 CheckAndReturnIndex(dataFromString[1]),
                                 CheckAndReturnIndex(dataFromString[2]),
                                 CheckAndReturnIndex(dataFromString[3]),
                                 CheckAndReturnIndex(dataFromString[4]));
         }
 
-        private string YearSetToString(YearSet YearSetDataRow)
+        // Method implementing the mechanism of maping yearset to csv data row
+        private string YearSetToString(Yearset YearSetDataRow)
         {
             return $"{YearSetDataRow.Year};{YearSetDataRow.CapitalExpendituresPriceIndicator};" +
                    $"{YearSetDataRow.ConstructionAssemblyWorksIndicator};{YearSetDataRow.InvestnebtPurchasesIndicator};" +
                    $"{YearSetDataRow.OtherExpendituresIndicator}";
         }
 
+        // Method validating a string and converting it to an int year value
         private int CheckAndReturnYear(string yearString)
         {
             if (yearString.Equals(""))
@@ -66,6 +70,7 @@ namespace LINQ_Review.Controller
             }
         }
 
+        // Method validating a string and converting it to a double index value
         private double CheckAndReturnIndex(string indexString)
         {
             if (indexString.Equals(""))
@@ -91,7 +96,8 @@ namespace LINQ_Review.Controller
             }
         }
 
-        public void SaveChanges(List<YearSet> modifiedDataSet)
+        // Method implementing the mechanism of saving data to a csv file
+        public void SaveChanges(List<Yearset> modifiedDataSet)
         {
             using (StreamWriter streamWriter = new StreamWriter(dataSetPath, false, Encoding.UTF8))
             {

@@ -1,42 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LINQ_Review.View
+﻿namespace LINQ_Review.View
 {
     internal static class MessageView
     {
-        public static void IncorrectDataMessage()
+        // Displays a message, when appears attempt to process invalid data
+        public static void InvalidDataMessage()
         {
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nWPROWADZONO NIEPOPRAWNE DANE!\n");
         }
 
-        public static void AlreadyUsedFilteringProperty()
+        // Displays a message, when user tries to filter data using the same property twice
+        public static void AlreadyUsedFilteringPropertyMessage()
         {
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nFILTROWANIE PO TEJ WŁAŚCIWOŚCI JEST JUŻ ZAAPLIKOWANE!\n");
         }
 
-        public static void NoDataToPrint()
+        // Displays a message, when there is no data to display 
+        public static void NoDataToPrintMessage()
         {
             DashSeparatorView.SeparateWithDashes();
-            Console.WriteLine("\nBRAK DANYCH DO WYŚWIETLENIA\n");
+            Console.WriteLine("\nBRAK DANYCH DO WYŚWIETLENIA!\n");
         }
 
-        public static void NoGivenData()
+        // Displays a message, when user didn't submit any data
+        public static void NoGivenDataMessage()
         {
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nNIE PODANO WYMAGANYCH DANYCH!\n");
         }
 
-        public static void IncorrectScope()
+        // Displays a message, when user tries to set wrong scope of filtering
+        public static void InvalidScopeMessage()
         {
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nPODANY ZAKRES JEST NIEPOPRAWNY! GÓRNA GRANICA MUSI MIEĆ WARTOŚĆ WIĘKSZĄ NIŻ DOLNA GRANICA!\n");
+        }
+
+        // Displays a message, when user doesn't specify scope of filtering
+        public static void NoFilteringScopeAppliedMessage()
+        {
             DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nNIE WYBRANO ZAKRESU FILTROWANIA!\n");
         }
     }
 }

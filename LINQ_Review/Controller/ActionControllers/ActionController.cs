@@ -4,13 +4,14 @@ namespace LINQ_Review.Controller
 {
     abstract internal class ActionController
     {
-        public List<YearSet> DataSet { get; private set; }
+        public List<Yearset> Dataset { get; private set; }
 
-        public ActionController(List<YearSet> dataSet)
+        public ActionController(List<Yearset> dataset)
         {
-            DataSet = dataSet;
+            Dataset = dataset;
         }
 
+        // Method implementing the mechanism of runnining the module
         abstract public void RunModule();
     }
 }

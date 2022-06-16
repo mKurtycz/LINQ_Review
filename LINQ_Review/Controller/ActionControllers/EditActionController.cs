@@ -5,11 +5,12 @@ namespace LINQ_Review.Controller
 {
     internal class EditActionController : ActionController
 {
-        public EditActionController(List<YearSet> yearSet) : base(yearSet) { }
+        public EditActionController(List<Yearset> yearset) : base(yearset) { }
 
+        // Method implementing the mechanism of runnining the editing module
         public override void RunModule()
         {
-            EditActionView.ShowMenu();
+            EditActionView.DisplayMenu();
         }
     }
 }

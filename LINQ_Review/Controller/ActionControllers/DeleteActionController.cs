@@ -5,11 +5,12 @@ namespace LINQ_Review.Controller
 {
     internal class DeleteActionController : ActionController
     {
-        public DeleteActionController(List<YearSet> yearSet) : base(yearSet) { }
+        public DeleteActionController(List<Yearset> yearset) : base(yearset) { }
 
+        // Method implementing the mechanism of runnining the deleting module
         public override void RunModule()
         {
-            DeleteActionView.ShowMenu();
+            DeleteActionView.DisplayMenu();
         }
     }
 }

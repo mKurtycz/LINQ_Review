@@ -5,11 +5,12 @@ namespace LINQ_Review.Controller
 {
     internal class AddActionController : ActionController
     {
-        public AddActionController(List<YearSet> yearSet) : base (yearSet) { }
+        public AddActionController(List<Yearset> yearset) : base (yearset) { }
 
+        // Method implementing the mechanism of runnining the adding module
         public override void RunModule()
         {
-            AddActionView.ShowMenu();
+            AddActionView.DisplayMenu();
         }
     }
 }
