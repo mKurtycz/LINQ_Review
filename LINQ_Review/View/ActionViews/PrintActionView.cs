@@ -73,9 +73,20 @@ namespace LINQ_Review.View
             DashSeparatorView.SeparateWithDashes();
         }
 
-        public static void ShowAdditionalFiltering()
+        public static void GreaterThanQuery(string property)
         {
-            Console.WriteLine("Czy chcesz przefiltrować dane według dodatkowej właściwości?");
+            Console.WriteLine($"Czy {property} ma być ograniczony z dołu?");
+        }
+
+        public static void LessThanQuery(string property)
+        {
+            Console.WriteLine($"Czy {property} ma być ograniczony z góry?");
+        }
+
+        public static void EnterValue()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("Wprowadź liczbę:");
         }
     }
 }

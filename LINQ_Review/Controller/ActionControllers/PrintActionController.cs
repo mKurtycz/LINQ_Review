@@ -66,6 +66,7 @@ namespace LINQ_Review.Controller
                     }
                     else
                     {
+                        Console.WriteLine(query.GetType());
                         PrintActionView.PrintAllDataRows(query.ToList());
                         break;
                     }
@@ -81,9 +82,47 @@ namespace LINQ_Review.Controller
                     {
                         case ("ROK"):
                             queryInitializerCheck();
-                            found = true;
-                            filterProperties.Add(choice);
+                            double? greaterVaule = GreaterThan(choice);
+                            if (!(greaterVaule == null))
+                            {
+                                query = query.Where(x => x.Year > (int)greaterVaule);
+                                found = true;
+                                filterProperties.Add(choice);
+                            }
+                            
+                            double? lessValue;
+                            do
+                            {
+                                lessValue = LessThan(choice);
+                                if (lessValue == null)
+                                {
+                                    break;
+                                }
+                                else if (lessValue < greaterVaule)
+                                {
+                                    MessageView.IncorrectScope();
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            while (true);
+                            
+                            if (!(lessValue == null))
+                            {
+                                query = query.Where(x => x.Year < (int)lessValue);
+
+                                found = (found == false) ? true : false;
+                                if (!filterProperties.Contains(choice))
+                                {
+                                    filterProperties.Add(choice);
+                                }
+                            }
+
                             break;
+
+
 
                         case ("CNI"):
                             queryInitializerCheck();
@@ -126,7 +165,108 @@ namespace LINQ_Review.Controller
                     query = DataSet;
                 }
             }
-            
+
+            double? GreaterThan(string property)
+            {
+                string choice;
+                do
+                {
+                    PrintActionView.GreaterThanQuery(property);
+                    choice = Console.ReadLine().ToUpper();
+                    if (choice.Length == 0)
+                    {
+                        MessageView.IncorrectDataMessage();
+                    }
+                    else if (choice.Equals("NIE"))
+                    {
+                        return null;
+                    }
+                    else if (choice.Equals("TAK"))
+                    {
+                        double? greaterThanValue = null;
+
+                        greaterThanValue = TakeValue();
+                        
+                        if (greaterThanValue == null)
+                        {
+                            MessageView.NoGivenData();
+                        }
+
+                        return greaterThanValue;
+
+                    }
+                    else
+                    {
+                        MessageView.IncorrectDataMessage();
+                    }
+
+                }
+                while (true);
+
+            }
+
+            double? LessThan(string property)
+            {
+                string choice;
+                do
+                {
+                    PrintActionView.LessThanQuery(property);
+                    choice = Console.ReadLine().ToUpper();
+                    if (choice.Length == 0)
+                    {
+                        MessageView.IncorrectDataMessage();
+                    }
+                    else if (choice.Equals("NIE"))
+                    {
+                        return null;
+                    }
+                    else if (choice.Equals("TAK"))
+                    {
+                        double? lessThanValue = null;
+
+                        lessThanValue = TakeValue();
+
+                        if (lessThanValue == null)
+                        {
+                            MessageView.NoGivenData();
+                        }
+
+                        return lessThanValue;
+
+                    }
+                    else
+                    {
+                        MessageView.IncorrectDataMessage();
+                    }
+
+                }
+                while (true);
+
+            }
+
+            double? TakeValue()
+            {
+                string choice;
+                do
+                {
+                    double value;
+                    PrintActionView.EnterValue();
+                    choice = Console.ReadLine().ToUpper();
+                    if (choice.Length == 0)
+                    {
+                        return null;
+                    }
+                    else if (Double.TryParse(choice, out value))
+                    {
+                        return value;
+                    }
+                    else
+                    {
+                        MessageView.IncorrectDataMessage();
+                    }
+                }
+                while (true);
+            }
             //pętla z wyborem filtrów, możliwość przerwania
             // CODE
             

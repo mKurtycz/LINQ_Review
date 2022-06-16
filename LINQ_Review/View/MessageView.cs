@@ -25,5 +25,18 @@ namespace LINQ_Review.View
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nBRAK DANYCH DO WYŚWIETLENIA\n");
         }
+
+        public static void NoGivenData()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nNIE PODANO WYMAGANYCH DANYCH!\n");
+        }
+
+        public static void IncorrectScope()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nPODANY ZAKRES JEST NIEPOPRAWNY! GÓRNA GRANICA MUSI MIEĆ WARTOŚĆ WIĘKSZĄ NIŻ DOLNA GRANICA!\n");
+            DashSeparatorView.SeparateWithDashes();
+        }
     }
 }
