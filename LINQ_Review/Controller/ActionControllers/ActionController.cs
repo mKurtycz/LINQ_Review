@@ -2,7 +2,7 @@
 
 namespace LINQ_Review.Controller
 {
-    abstract internal class ActionController
+    abstract public class ActionController
     {
         public List<Yearset> Dataset { get; private set; }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LINQ_Review.Controller
 {
-    internal class DataManipulationController
+    public class DataManipulationController
     {
         private string dataSetPath = "DataSet.csv";
         List<string>? headers;
@@ -26,7 +26,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method implementing the mechanism of maping csv data row to yearset
-        private Yearset StringToYearSet(string stringLine)
+        public Yearset StringToYearSet(string stringLine)
         {
             string[] dataFromString = new string[5];
             stringLine.Split(";")[0..5].CopyTo(dataFromString, 0);
@@ -39,7 +39,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method implementing the mechanism of maping yearset to csv data row
-        private string YearSetToString(Yearset YearSetDataRow)
+        public string YearSetToString(Yearset YearSetDataRow)
         {
             return $"{YearSetDataRow.Year};{YearSetDataRow.CapitalExpendituresPriceIndicator};" +
                    $"{YearSetDataRow.ConstructionAssemblyWorksIndicator};{YearSetDataRow.InvestnebtPurchasesIndicator};" +
@@ -47,7 +47,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method validating a string and converting it to an int year value
-        private int CheckAndReturnYear(string yearString)
+        public int CheckAndReturnYear(string yearString)
         {
             if (yearString.Equals(""))
             {
@@ -71,7 +71,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method validating a string and converting it to a double index value
-        private double CheckAndReturnIndex(string indexString)
+        public double CheckAndReturnIndex(string indexString)
         {
             if (indexString.Equals(""))
             {

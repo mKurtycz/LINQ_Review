@@ -3,7 +3,7 @@ using LINQ_Review.View;
 
 namespace LINQ_Review.Controller
 {
-    internal class DisplayActionController : ActionController
+    public class DisplayActionController : ActionController
     {
         public DisplayActionController(List<Yearset> yearset) : base(yearset) { }
 
@@ -41,7 +41,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method implementing the mechanism of filtering, sorting and displaying data
-        private void SortFiltrAndDisplayDataRows()
+        public void SortFiltrAndDisplayDataRows()
         {
             IEnumerable<Yearset> query = null;
             List<string> filteredProperties = new List<string>();

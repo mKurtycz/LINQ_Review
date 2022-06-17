@@ -3,7 +3,7 @@ using LINQ_Review.View;
 
 namespace LINQ_Review.Controller
 {
-    internal class AddActionController : ActionController
+    public class AddActionController : ActionController
     {
         public AddActionController(List<Yearset> yearset) : base (yearset) { }
 

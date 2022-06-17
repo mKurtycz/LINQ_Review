@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LINQ_Review.Exceptions
 {
-    class YearOutOfBoundException : Exception
+    public class YearOutOfBoundException : Exception
     {
     }
 }

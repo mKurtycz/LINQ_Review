@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LINQ_Review.Model
 {
-    struct Yearset
+    public struct Yearset
     {
         public int Year { get; private set; }
         public double CapitalExpendituresPriceIndicator { get; private set; }

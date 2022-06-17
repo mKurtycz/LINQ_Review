@@ -3,7 +3,7 @@ using LINQ_Review.View;
 
 namespace LINQ_Review.Controller
 {
-    internal class DeleteActionController : ActionController
+    public class DeleteActionController : ActionController
     {
         public DeleteActionController(List<Yearset> yearset) : base(yearset) { }
 

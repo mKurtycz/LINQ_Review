@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LINQ_Review.Exceptions
 {
-    class NegativeValueException : Exception
+    public class NegativeValueException : Exception
     {
     }
 }

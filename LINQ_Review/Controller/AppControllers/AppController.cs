@@ -3,7 +3,7 @@ using LINQ_Review.View;
 
 namespace LINQ_Review.Controller
 {
-    internal class AppController
+    public class AppController
     {
         // Controller that handles with dataset changes 
         private DataManipulationController? internalDataManipulationControler;
