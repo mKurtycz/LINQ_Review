@@ -17,7 +17,7 @@ namespace LINQ_Review.Controller
             try
             {
                 headers = File.ReadLines(dataSetPath, Encoding.GetEncoding("utf-8")).Take(2).ToList();
-                return File.ReadLines(dataSetPath).Skip(2).Select(line => StringToYearSet(line)).ToList();
+                return File.ReadLines(dataSetPath).Skip(2).Select(line => StringToYearset(line)).ToList();
             }
             catch
             {
@@ -26,7 +26,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method implementing the mechanism of maping csv data row to yearset
-        public Yearset StringToYearSet(string stringLine)
+        public Yearset StringToYearset(string stringLine)
         {
             string[] dataFromString = new string[5];
             stringLine.Split(";")[0..5].CopyTo(dataFromString, 0);
@@ -39,7 +39,7 @@ namespace LINQ_Review.Controller
         }
 
         // Method implementing the mechanism of maping yearset to csv data row
-        public string YearSetToString(Yearset YearSetDataRow)
+        public string YearsetToString(Yearset YearSetDataRow)
         {
             return $"{YearSetDataRow.Year};{YearSetDataRow.CapitalExpendituresPriceIndicator};" +
                    $"{YearSetDataRow.ConstructionAssemblyWorksIndicator};{YearSetDataRow.InvestnebtPurchasesIndicator};" +
@@ -102,7 +102,7 @@ namespace LINQ_Review.Controller
             using (StreamWriter streamWriter = new StreamWriter(dataSetPath, false, Encoding.UTF8))
             {
                 headers.ForEach(headerRow => streamWriter.WriteLine(headerRow));
-                modifiedDataSet.Select(dataRow => YearSetToString(dataRow))
+                modifiedDataSet.Select(dataRow => YearsetToString(dataRow))
                                .ToList()
                                .ForEach(dataRow => streamWriter.WriteLine(dataRow));
             }
