@@ -135,7 +135,6 @@ namespace LINQ_Review.Controller
 
                             CheckIfQueryIsInitialized();
 
-                            filteredProperties.Add(filteringChoice);
                             break;
 
                         case ("RBM"):
@@ -180,111 +179,111 @@ namespace LINQ_Review.Controller
                     query = Dataset;
                 }
             }
+        }
 
-            // Method returning value of the upper bound value or returning null if user decided not to set it 
-            double? GetUpperBoundValue(string property)
+        // Method returning value of the upper bound value or returning null if user decided not to set it 
+        public double? GetUpperBoundValue(string property)
+        {
+            string choice;
+            do
             {
-                string choice;
-                do
+                DisplayActionView.DisplayGreaterThanQuery(property);
+                choice = Console.ReadLine().ToUpper();
+                if (choice.Length == 0)
                 {
-                    DisplayActionView.DisplayGreaterThanQuery(property);
-                    choice = Console.ReadLine().ToUpper();
-                    if (choice.Length == 0)
-                    {
-                        MessageView.InvalidDataMessage();
-                    }
-                    else if (choice.Equals("NIE"))
-                    {
-                        return null;
-                    }
-                    else if (choice.Equals("TAK"))
-                    {
-                        double? upperBoundValue = null;
+                    MessageView.InvalidDataMessage();
+                }
+                else if (choice.Equals("NIE"))
+                {
+                    return null;
+                }
+                else if (choice.Equals("TAK"))
+                {
+                    double? upperBoundValue = null;
 
-                        upperBoundValue = TakeValue();
-                        
-                        if (upperBoundValue == null)
-                        {
-                            MessageView.NoGivenDataMessage();
-                        }
+                    upperBoundValue = TakeValue();
 
-                        return upperBoundValue;
-
-                    }
-                    else
+                    if (upperBoundValue == null)
                     {
-                        MessageView.InvalidDataMessage();
+                        MessageView.NoGivenDataMessage();
                     }
+
+                    return upperBoundValue;
 
                 }
-                while (true);
+                else
+                {
+                    MessageView.InvalidDataMessage();
+                }
 
             }
+            while (true);
 
-            // Method returning value of the lower bound value or returning null if user decided not to set it 
-            double? LessThan(string property)
+        }
+
+        // Method returning value of the lower bound value or returning null if user decided not to set it 
+        public double? LessThan(string property)
+        {
+            string choice;
+            do
             {
-                string choice;
-                do
+                DisplayActionView.DisplayLessThanQuery(property);
+                choice = Console.ReadLine().ToUpper();
+                if (choice.Length == 0)
                 {
-                    DisplayActionView.DisplayLessThanQuery(property);
-                    choice = Console.ReadLine().ToUpper();
-                    if (choice.Length == 0)
-                    {
-                        MessageView.InvalidDataMessage();
-                    }
-                    else if (choice.Equals("NIE"))
-                    {
-                        return null;
-                    }
-                    else if (choice.Equals("TAK"))
-                    {
-                        double? lowerBoundValue = null;
+                    MessageView.InvalidDataMessage();
+                }
+                else if (choice.Equals("NIE"))
+                {
+                    return null;
+                }
+                else if (choice.Equals("TAK"))
+                {
+                    double? lowerBoundValue = null;
 
-                        lowerBoundValue = TakeValue();
+                    lowerBoundValue = TakeValue();
 
-                        if (lowerBoundValue == null)
-                        {
-                            MessageView.NoGivenDataMessage();
-                        }
-
-                        return lowerBoundValue;
-
-                    }
-                    else
+                    if (lowerBoundValue == null)
                     {
-                        MessageView.InvalidDataMessage();
+                        MessageView.NoGivenDataMessage();
                     }
+
+                    return lowerBoundValue;
 
                 }
-                while (true);
-
-            }
-
-            // Method retriving and validating a value of bound from user
-            double? TakeValue()
-            {
-                string choice;
-                do
+                else
                 {
-                    double value;
-                    DisplayActionView.DisplayEnterValueQuery();
-                    choice = Console.ReadLine().ToUpper();
-                    if (choice.Length == 0)
-                    {
-                        return null;
-                    }
-                    else if (Double.TryParse(choice, out value))
-                    {
-                        return value;
-                    }
-                    else
-                    {
-                        MessageView.InvalidDataMessage();
-                    }
+                    MessageView.InvalidDataMessage();
                 }
-                while (true);
+
             }
+            while (true);
+
+        }
+
+        // Method retriving and validating a value of bound from user
+        public double? TakeValue()
+        {
+            string choice;
+            do
+            {
+                double value;
+                DisplayActionView.DisplayEnterValueQuery();
+                choice = Console.ReadLine().ToUpper();
+                if (choice.Length == 0)
+                {
+                    return null;
+                }
+                else if (Double.TryParse(choice, out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    MessageView.InvalidDataMessage();
+                }
+            }
+            while (true);
         }
     }
 }

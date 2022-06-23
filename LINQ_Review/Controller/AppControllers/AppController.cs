@@ -52,25 +52,7 @@ namespace LINQ_Review.Controller
                         dataset = internalDataManipulationControler.LoadData();
                     }
 
-                    switch (state)
-                    {
-                        case 1:
-                            actionControler = new DisplayActionController(dataset);
-                            actionControler.RunModule();
-                            break;
-                        case 2:
-                            actionControler = new AddActionController(dataset);
-                            actionControler.RunModule();
-                            break;
-                        case 3:
-                            actionControler = new EditActionController(dataset);
-                            actionControler.RunModule();
-                            break;
-                        case 4:
-                            actionControler = new DeleteActionController(dataset);
-                            actionControler.RunModule();
-                            break;
-                    }
+                    ReturnProperActionController(state, dataset).RunModule();
                 }
             }
             while (state != -1);
@@ -83,5 +65,13 @@ namespace LINQ_Review.Controller
 
             AppView.ShutDown();
         }
+
+        public ActionController ReturnProperActionController(int state, List<Yearset> dataset) => state switch
+        {
+            1 => new DisplayActionController(dataset),
+            2 => new AddActionController(dataset),
+            3 => new EditActionController(dataset),
+            4 => new DeleteActionController(dataset),
+        };
     }
 }

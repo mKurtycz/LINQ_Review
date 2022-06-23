@@ -1,4 +1,5 @@
 ﻿using LINQ_Review.Controller;
+using LINQ_Review.Model;
 
 namespace LINQ_Review
 {
