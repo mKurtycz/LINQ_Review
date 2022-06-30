@@ -76,46 +76,31 @@ namespace LINQ_Review.Controller
                 else
                 {
                     bool foundProperty = false;
-                    
-                    switch(filteringChoice)
+                    double? upperBound, lowerBound;
+
+                    switch (filteringChoice)
                     {
                         case ("ROK"):
                             foundProperty = true;
                             
                             CheckIfQueryIsInitialized();
-                          
-                            double? upperBound = GetUpperBoundValue(filteringChoice);
+
+
+                            upperBound = GetUpperBoundValue(filteringChoice);
                             
                             if (!(upperBound == null))
                             {
-                                query = query.Where(x => x.Year > (int)upperBound);
+                                query = query.Where(yearset => yearset.Year > (int)upperBound);
                                 filteredProperties.Add(filteringChoice);
                             }
                             
-                            double? lowerBound;
 
-                            do
-                            {
-                                lowerBound = LessThan(filteringChoice);
-                                
-                                if (lowerBound == null)
-                                {
-                                    break;
-                                }
-                                else if (lowerBound < upperBound)
-                                {
-                                    MessageView.InvalidScopeMessage();
-                                }
-                                else
-                                {
-                                    break;
-                                }
-                            }
-                            while (true);
-                            
+                            CheckAndSetLowerBoundValue(upperBound, filteringChoice, out lowerBound);
+
+
                             if (!(lowerBound == null))
                             {
-                                query = query.Where(x => x.Year < (int)lowerBound);
+                                query = query.Where(yearset => yearset.Year < (int)lowerBound);
 
                                 if (!filteredProperties.Contains(filteringChoice))
                                 {
@@ -127,6 +112,10 @@ namespace LINQ_Review.Controller
                             {
                                 MessageView.NoFilteringScopeAppliedMessage();
                             }
+                            else if (GetDecision(filteringChoice) == 1)
+                            {
+                                query = query.OrderByDescending(yearset => yearset.Year);
+                            }
 
                             break;
 
@@ -135,6 +124,36 @@ namespace LINQ_Review.Controller
 
                             CheckIfQueryIsInitialized();
 
+                            upperBound = GetUpperBoundValue(filteringChoice);
+
+                            if (!(upperBound == null))
+                            {
+                                query = query.Where(yearset => yearset.CapitalExpendituresPriceIndicator > upperBound);
+                                filteredProperties.Add(filteringChoice);
+                            }
+
+                            CheckAndSetLowerBoundValue(upperBound, filteringChoice, out lowerBound);
+
+
+                            if (!(lowerBound == null))
+                            {
+                                query = query.Where(yearset => yearset.CapitalExpendituresPriceIndicator < lowerBound);
+
+                                if (!filteredProperties.Contains(filteringChoice))
+                                {
+                                    filteredProperties.Add(filteringChoice);
+                                }
+                            }
+
+                            if (!filteredProperties.Contains(filteringChoice))
+                            {
+                                MessageView.NoFilteringScopeAppliedMessage();
+                            }
+                            else if (GetDecision(filteringChoice) == 1)
+                            {
+                                query = query.OrderByDescending(yearset => yearset.CapitalExpendituresPriceIndicator);
+                            }
+
                             break;
 
                         case ("RBM"):
@@ -142,15 +161,73 @@ namespace LINQ_Review.Controller
 
                             CheckIfQueryIsInitialized();
 
-                            filteredProperties.Add(filteringChoice);
+                            upperBound = GetUpperBoundValue(filteringChoice);
+
+                            if (!(upperBound == null))
+                            {
+                                query = query.Where(yearset => yearset.ConstructionAssemblyWorksIndicator > upperBound);
+                                filteredProperties.Add(filteringChoice);
+                            }
+
+                            CheckAndSetLowerBoundValue(upperBound, filteringChoice, out lowerBound);
+
+
+                            if (!(lowerBound == null))
+                            {
+                                query = query.Where(yearset => yearset.ConstructionAssemblyWorksIndicator < lowerBound);
+
+                                if (!filteredProperties.Contains(filteringChoice))
+                                {
+                                    filteredProperties.Add(filteringChoice);
+                                }
+                            }
+
+                            if (!filteredProperties.Contains(filteringChoice))
+                            {
+                                MessageView.NoFilteringScopeAppliedMessage();
+                            }
+                            else if (GetDecision(filteringChoice) == 1)
+                            {
+                                query = query.OrderByDescending(yearset => yearset.ConstructionAssemblyWorksIndicator);
+                            }
+
                             break;
 
                         case ("ZI"):
                             foundProperty = true;
-                            
+
                             CheckIfQueryIsInitialized();
 
-                            filteredProperties.Add(filteringChoice);
+                            upperBound = GetUpperBoundValue(filteringChoice);
+
+                            if (!(upperBound == null))
+                            {
+                                query = query.Where(yearset => yearset.InvestnebtPurchasesIndicator > upperBound);
+                                filteredProperties.Add(filteringChoice);
+                            }
+
+                            CheckAndSetLowerBoundValue(upperBound, filteringChoice, out lowerBound);
+
+
+                            if (!(lowerBound == null))
+                            {
+                                query = query.Where(yearset => yearset.InvestnebtPurchasesIndicator < lowerBound);
+
+                                if (!filteredProperties.Contains(filteringChoice))
+                                {
+                                    filteredProperties.Add(filteringChoice);
+                                }
+                            }
+
+                            if (!filteredProperties.Contains(filteringChoice))
+                            {
+                                MessageView.NoFilteringScopeAppliedMessage();
+                            }
+                            else if (GetDecision(filteringChoice) == 1)
+                            {
+                                query = query.OrderByDescending(yearset => yearset.InvestnebtPurchasesIndicator);
+                            }
+
                             break;
 
                         case ("PN"):
@@ -158,7 +235,36 @@ namespace LINQ_Review.Controller
 
                             CheckIfQueryIsInitialized();
 
-                            filteredProperties.Add(filteringChoice);
+                            upperBound = GetUpperBoundValue(filteringChoice);
+
+                            if (!(upperBound == null))
+                            {
+                                query = query.Where(yearset => yearset.OtherExpendituresIndicator > upperBound);
+                                filteredProperties.Add(filteringChoice);
+                            }
+
+                            CheckAndSetLowerBoundValue(upperBound, filteringChoice, out lowerBound);
+
+
+                            if (!(lowerBound == null))
+                            {
+                                query = query.Where(yearset => yearset.OtherExpendituresIndicator < lowerBound);
+
+                                if (!filteredProperties.Contains(filteringChoice))
+                                {
+                                    filteredProperties.Add(filteringChoice);
+                                }
+                            }
+
+                            if (!filteredProperties.Contains(filteringChoice))
+                            {
+                                MessageView.NoFilteringScopeAppliedMessage();
+                            }
+                            else if (GetDecision(filteringChoice) == 1)
+                            {
+                                query = query.OrderByDescending(yearset => yearset.OtherExpendituresIndicator);
+                            }
+
                             break;
                     }
 
@@ -201,7 +307,7 @@ namespace LINQ_Review.Controller
                 {
                     double? upperBoundValue = null;
 
-                    upperBoundValue = TakeValue();
+                    upperBoundValue = GetValue();
 
                     if (upperBoundValue == null)
                     {
@@ -241,7 +347,7 @@ namespace LINQ_Review.Controller
                 {
                     double? lowerBoundValue = null;
 
-                    lowerBoundValue = TakeValue();
+                    lowerBoundValue = GetValue();
 
                     if (lowerBoundValue == null)
                     {
@@ -262,14 +368,13 @@ namespace LINQ_Review.Controller
         }
 
         // Method retriving and validating a value of bound from user
-        public double? TakeValue()
+        public double? GetValue()
         {
-            string choice;
             do
             {
                 double value;
                 DisplayActionView.DisplayEnterValueQuery();
-                choice = Console.ReadLine().ToUpper();
+                string choice = Console.ReadLine().ToUpper();
                 if (choice.Length == 0)
                 {
                     return null;
@@ -281,6 +386,55 @@ namespace LINQ_Review.Controller
                 else
                 {
                     MessageView.InvalidDataMessage();
+                }
+            }
+            while (true);
+        }
+
+        // Method checking whether lower bound is lower than upper bound, if so it sets this bound
+        public void CheckAndSetLowerBoundValue(double? upperBound, string filteringChoice, out double? lowerBound)
+        {
+            do
+            {
+                lowerBound = LessThan(filteringChoice);
+
+                if (lowerBound == null)
+                {
+                    break;
+                }
+                else if (lowerBound < upperBound)
+                {
+                    MessageView.InvalidScopeMessage();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (true);
+        }
+
+        // Method retriving, validating a string and returning 0 if it equals "NIE", 1 if it equals "TAK"
+        public int GetDecision(string filteringChoice)
+        {
+            string descendingSorting;
+
+            do
+            {
+                DisplayActionView.DisplaySortingOptionQuery(filteringChoice);
+                descendingSorting = Console.ReadLine().ToUpper();
+
+                if (descendingSorting.Length == 0)
+                {
+                    MessageView.InvalidDataMessage();
+                }
+                else if (descendingSorting.Equals("NIE"))
+                {
+                    return 0;
+                }
+                else if (descendingSorting.Equals("TAK"))
+                {
+                    return 1;
                 }
             }
             while (true);

@@ -10,15 +10,15 @@ namespace LINQ_ReviewTests
         [MemberData(nameof(ActionControllerTestData))]
         public void ReturnProperActionController_ForGivenStateValue_ReturnsProperActionControllerTypeObject(int state, object actionControllerTypeObject)
         {
-            AppController appController = new AppController();
+            AppController controller = new AppController();
 
-            var result = appController.ReturnProperActionController(state, new List<Yearset>());
+            var result = controller.ReturnProperActionController(state, new List<Yearset>());
             Object ob = new Object();
 
             Assert.Equal(result.GetType(), actionControllerTypeObject.GetType());
         }
 
-        public static readonly List<Yearset> ActionControllerTestDataYearset = new List<Yearset>();
+        public static readonly List<Yearset> YearsetTestData = new List<Yearset>();
 
         public static IEnumerable<object[]> ActionControllerTestData =>
             new List<object[]>
@@ -26,22 +26,22 @@ namespace LINQ_ReviewTests
                 new object[]
                 {
                     1,
-                    new DisplayActionController(ActionControllerTestDataYearset)
+                    new DisplayActionController(YearsetTestData)
                 },
                 new object[]
                 {
                     2,
-                    new AddActionController(ActionControllerTestDataYearset)
+                    new AddActionController(YearsetTestData)
                 },
                 new object[]
                 {
                     3,
-                    new EditActionController(ActionControllerTestDataYearset)
+                    new EditActionController(YearsetTestData)
                 },
                 new object[]
                 {
                     4,
-                    new DeleteActionController(ActionControllerTestDataYearset)
+                    new DeleteActionController(YearsetTestData)
                 },
             };
     }

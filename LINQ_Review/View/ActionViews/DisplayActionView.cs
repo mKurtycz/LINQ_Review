@@ -101,5 +101,13 @@ namespace LINQ_Review.View
             Console.WriteLine("\nWprowadź liczbę:\n");
             DashSeparatorView.SeparateWithDashes();
         }
+
+        // Displays sorting option query
+        public static void DisplaySortingOptionQuery(string property)
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine($"\nDomyślne sortowanie - ROSNĄCO. Czy chcesz posortować wiersze malejąco według {property}?\n");
+            DashSeparatorView.SeparateWithDashes();
+        }
     }
 }
