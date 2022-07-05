@@ -8,9 +8,11 @@ namespace LINQ_Review.Controller
         public EditActionController(List<Yearset> yearset) : base(yearset) { }
 
         // Method implementing the mechanism of runnining the editing module
-        public override void RunModule()
+        public override bool RunModule()
         {
             EditActionView.DisplayMenu();
+
+            return changeHasBeenMade;
         }
     }
 }

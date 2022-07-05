@@ -43,5 +43,17 @@
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nNIE WYBRANO ZAKRESU FILTROWANIA!\n");
         }
+
+        public static void InvalidYearDataMessage()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nPOLE ROK NIE MOŻE BYĆ PUSTE!\n");
+        }
+
+        public static void YearsetAlreadySavedMessage()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nDLA PODANEGO ROKU ISTNIEJE JUŻ REKORD!\n");
+        }
     }
 }

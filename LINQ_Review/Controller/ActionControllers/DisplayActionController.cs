@@ -8,7 +8,7 @@ namespace LINQ_Review.Controller
         public DisplayActionController(List<Yearset> yearset) : base(yearset) { }
 
         // Method implementing the mechanism of runnining the displaying module
-        public override void RunModule()
+        public override bool RunModule()
         {
             int state = 0;
             do
@@ -38,6 +38,8 @@ namespace LINQ_Review.Controller
                 }
             }
             while (state != -1);
+
+            return changeHasBeenMade;
         }
 
         // Method implementing the mechanism of filtering, sorting and displaying data

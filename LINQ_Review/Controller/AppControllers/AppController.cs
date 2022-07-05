@@ -52,12 +52,12 @@ namespace LINQ_Review.Controller
                         dataset = internalDataManipulationControler.LoadData();
                     }
 
-                    ReturnProperActionController(state, dataset).RunModule();
+                    changeHasBeenMade = ReturnProperActionController(state, dataset).RunModule();
                 }
             }
             while (state != -1);
 
-            // Only when there appeared changes in the dataset app saves them to csv
+            //Only when there appeared changes in the dataset app saves them to csv
             if (changeHasBeenMade == true)
             {
                 internalDataManipulationControler.SaveChanges(dataset);

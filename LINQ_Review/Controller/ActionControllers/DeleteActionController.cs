@@ -8,9 +8,10 @@ namespace LINQ_Review.Controller
         public DeleteActionController(List<Yearset> yearset) : base(yearset) { }
 
         // Method implementing the mechanism of runnining the deleting module
-        public override void RunModule()
+        public override bool RunModule()
         {
             DeleteActionView.DisplayMenu();
+            return changeHasBeenMade;
         }
     }
 }

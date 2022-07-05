@@ -4,7 +4,8 @@ namespace LINQ_Review.Controller
 {
     abstract public class ActionController
     {
-        public List<Yearset> Dataset { get; private set; }
+        protected List<Yearset> Dataset { get; private set; }
+        protected static bool changeHasBeenMade = false;
 
         public ActionController(List<Yearset> dataset)
         {
@@ -12,6 +13,6 @@ namespace LINQ_Review.Controller
         }
 
         // Method implementing the mechanism of runnining the module
-        abstract public void RunModule();
+        abstract public bool RunModule();
     }
 }
