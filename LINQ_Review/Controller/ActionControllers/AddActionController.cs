@@ -57,7 +57,7 @@ namespace LINQ_Review.Controller
                 
                 if (Int32.TryParse(properetyStringValue, out yearValue))
                 {
-                    if (yearValue < 1900)
+                    if (yearValue < 1950)
                     {
                         MessageView.InvalidDataMessage();
                         continue;

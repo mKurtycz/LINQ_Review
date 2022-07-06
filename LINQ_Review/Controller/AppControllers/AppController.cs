@@ -55,7 +55,7 @@ namespace LINQ_Review.Controller
                     changeHasBeenMade = ReturnProperActionController(state, dataset).RunModule();
                 }
             }
-            while (state != -1);
+            while (state == 0);
 
             //Only when there appeared changes in the dataset app saves them to csv
             if (changeHasBeenMade == true)
