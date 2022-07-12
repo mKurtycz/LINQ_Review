@@ -37,6 +37,7 @@ namespace LINQ_Review.Controller
                 if (Int32.TryParse(Console.ReadLine(), out state) == false || state < 1 || state > 5)
                 {
                     MessageView.InvalidDataMessage();
+                    state = 0;
                 }
                 // If user presses "5" + ENTER it breaks the loop and moves on to saving possible changes and closes the app
                 else if (state == 5)
@@ -53,6 +54,7 @@ namespace LINQ_Review.Controller
                     }
 
                     changeHasBeenMade = ReturnProperActionController(state, dataset).RunModule();
+                    state = 0;
                 }
             }
             while (state == 0);

@@ -55,5 +55,11 @@
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine("\nDLA PODANEGO ROKU ISTNIEJE JUŻ REKORD!\n");
         }
+
+        public static void NoGivenYearInDataset()
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nDLA PODANEGO ROKU NIE ISTNIEJE ZESTAW INDEKSÓW!\n");
+        }
     }
 }
