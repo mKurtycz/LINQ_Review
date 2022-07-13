@@ -9,7 +9,7 @@ namespace LINQ_Review.Model
     public struct Yearset
     {
         public int Year { get; private set; }
-        public double CapitalExpendituresPriceIndicator { get; private set; }
+        public double CapitalExpendituresPriceIndicator { get;  set; }
         public double ConstructionAssemblyWorksIndicator { get; private set; }
         public double InvestnebtPurchasesIndicator { get; private set; }
         public double OtherExpendituresIndicator { get; private set; }
