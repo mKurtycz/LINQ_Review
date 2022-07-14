@@ -49,7 +49,7 @@ namespace LINQ_Review.View
         }
 
         // Displays a single data row 
-        private static void DisplayDataRow(Yearset dataRow)
+        public static void DisplayDataRow(Yearset dataRow)
         {
             string contentToPrint = $"|\t{dataRow.Year} \t";
             contentToPrint += $"{dataRow.CapitalExpendituresPriceIndicator} \t";

@@ -10,9 +10,9 @@ namespace LINQ_Review.Model
     {
         public int Year { get; private set; }
         public double CapitalExpendituresPriceIndicator { get;  set; }
-        public double ConstructionAssemblyWorksIndicator { get; private set; }
-        public double InvestnebtPurchasesIndicator { get; private set; }
-        public double OtherExpendituresIndicator { get; private set; }
+        public double ConstructionAssemblyWorksIndicator { get;  set; }
+        public double InvestnebtPurchasesIndicator { get;  set; }
+        public double OtherExpendituresIndicator { get;  set; }
 
         public Yearset(int year, double CEP, double CAW, double IP, double OE)
         {

@@ -67,12 +67,12 @@ namespace LINQ_Review.Controller
                     if (Dataset.Select(yearset => yearset.Year).Contains(yearToEditValue))
                     {
                         Yearset yearsetToEdit = Dataset.Where(yearset => yearset.Year == yearToEditValue).FirstOrDefault();
+                        Yearset previousYearset = yearsetToEdit;
                         bool somethingHasBeenChanged = false;
 
-                        // CNI
-                        EditActionView.DisplayEditPropertyQuery("CNI", yearsetToEdit.CapitalExpendituresPriceIndicator);
                         do
                         {
+                            EditActionView.DisplayEditPropertyQuery("CNI", yearsetToEdit.CapitalExpendituresPriceIndicator);
                             choice = Console.ReadLine().ToUpper();
 
                             if (choice.Equals(""))
@@ -85,29 +85,9 @@ namespace LINQ_Review.Controller
                             }
                             else if (choice.Equals("TAK"))
                             {
-                                if (EditCNI(ref yearsetToEdit) == true)
+                                if (EditCEP(ref yearsetToEdit) == true)
                                 {
                                     somethingHasBeenChanged = true;
-                                }
-
-                                //other indices to be implemented
-
-                                //RBM - CAW
-
-
-                                //ZI - IP
-
-
-                                //PN - OE
-
-
-                                if (somethingHasBeenChanged)
-                                {
-                                    Dataset.RemoveAll(x => x.Year == yearToEditValue);
-
-                                    Dataset.Add(yearsetToEdit);
-                                   
-                                    Dataset = Dataset.OrderBy(yearset => yearset.Year).ToList();
                                 }
                                 break;
                             }
@@ -117,7 +97,104 @@ namespace LINQ_Review.Controller
                             }
                         }
                         while (true);
-                        
+
+                        do
+                        {
+                            EditActionView.DisplayEditPropertyQuery("RBM", yearsetToEdit.ConstructionAssemblyWorksIndicator);
+                            choice = Console.ReadLine().ToUpper();
+
+                            if (choice.Equals(""))
+                            {
+                                MessageView.InvalidDataMessage();
+                            }
+                            else if (choice.Equals("NIE"))
+                            {
+                                break;
+                            }
+                            else if (choice.Equals("TAK"))
+                            {
+                                if (EditCAW(ref yearsetToEdit) == true)
+                                {
+                                    somethingHasBeenChanged = true;
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                MessageView.InvalidDataMessage();
+                            }
+                        }
+                        while (true);
+
+                        do
+                        {
+                            EditActionView.DisplayEditPropertyQuery("ZI", yearsetToEdit.InvestnebtPurchasesIndicator);
+                            choice = Console.ReadLine().ToUpper();
+
+                            if (choice.Equals(""))
+                            {
+                                MessageView.InvalidDataMessage();
+                            }
+                            else if (choice.Equals("NIE"))
+                            {
+                                break;
+                            }
+                            else if (choice.Equals("TAK"))
+                            {
+                                if (EditIP(ref yearsetToEdit) == true)
+                                {
+                                    somethingHasBeenChanged = true;
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                MessageView.InvalidDataMessage();
+                            }
+                        }
+                        while (true);
+
+                        do
+                        {
+                            EditActionView.DisplayEditPropertyQuery("PN", yearsetToEdit.OtherExpendituresIndicator);
+                            choice = Console.ReadLine().ToUpper();
+
+                            if (choice.Equals(""))
+                            {
+                                MessageView.InvalidDataMessage();
+                            }
+                            else if (choice.Equals("NIE"))
+                            {
+                                break;
+                            }
+                            else if (choice.Equals("TAK"))
+                            {
+                                if (EditOE(ref yearsetToEdit) == true)
+                                {
+                                    somethingHasBeenChanged = true;
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                MessageView.InvalidDataMessage();
+                            }
+                        }
+                        while (true);
+
+                        if (somethingHasBeenChanged)
+                        {
+                            Dataset.RemoveAll(x => x.Year == yearToEditValue);
+
+                            Dataset.Add(yearsetToEdit);
+
+                            Dataset = Dataset.OrderBy(yearset => yearset.Year).ToList();
+
+                            numberOfEditedRows++;
+
+                            EditActionView.DisplaySuccessfulEditedIndexInfo(previousYearset, yearsetToEdit);
+                        }
+
                         if (somethingHasBeenChanged)
                         {
                             numberOfEditedRows++;
@@ -140,7 +217,7 @@ namespace LINQ_Review.Controller
             while (true);
         }
 
-        public bool EditCNI(ref Yearset yearsetToEdit)
+        public bool EditCEP(ref Yearset yearsetToEdit)
         {
             do
             {
@@ -148,6 +225,7 @@ namespace LINQ_Review.Controller
                 string choice = Console.ReadLine().ToUpper();
                 double indexToChangeValue;
 
+                Console.WriteLine("jestem przed ifem");
                 if (choice.Equals(""))
                 {
                     EditActionView.DisplayEditActionCancelationWasTaken();
@@ -168,25 +246,113 @@ namespace LINQ_Review.Controller
                 }
                 else
                 {
+                    Console.WriteLine("błędna wartość robię pętle");
                     MessageView.InvalidDataMessage();
                 }
             }
             while (true);
         }
 
-        public bool EditRBM()
+        public bool EditCAW(ref Yearset yearsetToEdit)
         {
-            return false;
+            do
+            {
+                EditActionView.DisplayIndexValueQuery("RBM");
+                string choice = Console.ReadLine().ToUpper();
+                double indexToChangeValue;
+
+                if (choice.Equals(""))
+                {
+                    EditActionView.DisplayEditActionCancelationWasTaken();
+                    return false;
+                }
+                else if (Double.TryParse(choice, out indexToChangeValue))
+                {
+                    if (indexToChangeValue < 0)
+                    {
+                        MessageView.InvalidScopeMessage();
+                        continue;
+                    }
+                    else
+                    {
+                        yearsetToEdit.ConstructionAssemblyWorksIndicator = indexToChangeValue;
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageView.InvalidDataMessage();
+                }
+            }
+            while (true);
         }
 
-        public bool EditZI()
+        public bool EditIP(ref Yearset yearsetToEdit)
         {
-            return false;
+            do
+            {
+                EditActionView.DisplayIndexValueQuery("ZI");
+                string choice = Console.ReadLine().ToUpper();
+                double indexToChangeValue;
+
+                if (choice.Equals(""))
+                {
+                    EditActionView.DisplayEditActionCancelationWasTaken();
+                    return false;
+                }
+                else if (Double.TryParse(choice, out indexToChangeValue))
+                {
+                    if (indexToChangeValue < 0)
+                    {
+                        MessageView.InvalidScopeMessage();
+                        continue;
+                    }
+                    else
+                    {
+                        yearsetToEdit.InvestnebtPurchasesIndicator = indexToChangeValue;
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageView.InvalidDataMessage();
+                }
+            }
+            while (true);
         }
 
-        public bool EditPN()
+        public bool EditOE(ref Yearset yearsetToEdit)
         {
-            return false;
+            do
+            {
+                EditActionView.DisplayIndexValueQuery("PN");
+                string choice = Console.ReadLine().ToUpper();
+                double indexToChangeValue;
+
+                if (choice.Equals(""))
+                {
+                    EditActionView.DisplayEditActionCancelationWasTaken();
+                    return false;
+                }
+                else if (Double.TryParse(choice, out indexToChangeValue))
+                {
+                    if (indexToChangeValue < 0)
+                    {
+                        MessageView.InvalidScopeMessage();
+                        continue;
+                    }
+                    else
+                    {
+                        yearsetToEdit.OtherExpendituresIndicator = indexToChangeValue;
+                        return true;
+                    }
+                }
+                else
+                {
+                    MessageView.InvalidDataMessage();
+                }
+            }
+            while (true);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace LINQ_Review.View
+﻿using LINQ_Review.Model;
+
+namespace LINQ_Review.View
 {
     internal static class EditActionView
     {
@@ -62,6 +64,19 @@
         {
             DashSeparatorView.SeparateWithDashes();
             Console.WriteLine($"\nWprowadź nową wartość dla {property}:\n");
+            DashSeparatorView.SeparateWithDashes();
+        }
+
+        public static void DisplaySuccessfulEditedIndexInfo(Yearset previousYearset, Yearset editedYearset)
+        {
+            DashSeparatorView.SeparateWithDashes();
+            Console.WriteLine("\nPomyślnie zedytowano zestaw wskaźników!\n");
+            Console.WriteLine("\nPOPRZEDNIE WARTOŚCI:\n");
+            DisplayActionView.DisplayDataLabels();
+            DisplayActionView.DisplayDataRow(previousYearset);
+            Console.WriteLine("\nNOWE WARTOŚCI WARTOŚCI:\n");
+            DisplayActionView.DisplayDataLabels();
+            DisplayActionView.DisplayDataRow(editedYearset);
             DashSeparatorView.SeparateWithDashes();
         }
     }
